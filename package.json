@@ -1,11 +1,17 @@
 {
-  "name": "dashing-js-project",
-  "description": "dashing-js-project",
-  "author": "<Put your name here>",
+  "name": "example-dashing-app-dashboard",
+  "description": "stand alone dashing-app project",
+  "author": "sauliuz",
   "version": "0.0.1",
-  "private": true,
   "dependencies": {
-    "dashing-js": "~0.1.5"
+    "coffee-script": "^1.12.5",
+    "dashing-js": "~0.1.5",
+    "express": "3.20.2",
+    "jade": "^0.35.0",
+    "mincer": "^1.5.1",
+    "node-sass": "^4.5.2",
+    "node-schedule": "^1.2.1",
+    "winston": "^2.3.1"
   },
   "engine": "node >= 0.10"
 }
