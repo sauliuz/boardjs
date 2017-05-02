@@ -2,7 +2,11 @@
 # It includes jquery & batman for you.
 #= require dashing.js
 
-#= require_directory .
+#= require dependencies/d3.v3-3.3.11.min
+#= require gridster/dashing.gridster.js
+#= require jquery/jquery.knob
+#= require dependencies/rickshaw-1.4.5.min
+
 #= require_tree ../../widgets
 
 console.log("Yeah! The dashboard has started!")
