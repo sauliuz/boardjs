@@ -1,4 +1,4 @@
-#= require_directory ./gridster
+#= require_directory .
 
 # This file enables gridster integration (http://gridster.net/)
 # Delete it if you'd rather handle the layout yourself.
