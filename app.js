@@ -1,5 +1,7 @@
 var dashing = require('./dashing.js').Dashing();
 
+// The main entry file for Dashing-app
+
 // Set your auth token here
 //dashing.auth_token = 'YOUR_AUTH_TOKEN';
 

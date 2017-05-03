@@ -2,11 +2,20 @@ var fs = require('fs')
   , path = require('path')
   , express = require('express')
   , Mincer = require('mincer')
-  , coffee = require('coffee-script');
+  , coffee = require('coffee-script')
+  , winston = require('winston');
+
 
 global.SCHEDULER = require('node-schedule');
 
-module.exports.logger = logger = require('./logger');
+module.exports.logger = logger = new winston.Logger({
+  transports: [
+    new winston.transports.Console({timestamp: true}),
+  ],
+  exitOnError: false,
+  handleExceptions: true
+});
+
 module.exports.Dashing = function Dashing() {
   var dashing = {};
   dashing.root = path.resolve(__dirname);
