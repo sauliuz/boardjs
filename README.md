@@ -22,5 +22,5 @@ The following is the look & feel of the example dashboard you are starting with 
 
 ### Contributions
 
-Contibutions and pull requests are welcome. Maintained by [sauliuz](https://twitter.com/sauliuz) & [PopularOwl](http://www.popularowl.com)
+Contibutions and pull requests are welcome. Maintained by [sauliuz](http://www.popularowl.com/author/saulius/)
   
