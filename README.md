@@ -1,16 +1,14 @@
 ## Dashing App
 
-This project is NodeJS version of the [popular Dashing dashboard application](http://dashing.io/). 
-The original port to JavaScript / NodeJS runtime was made in [dashing-js](https://github.com/fabiocaseri/dashing-js) (which is not maintained anymore).
+Dashing App is a simplified NodeJS version of the [popular Dashing dashboard application](http://dashing.io/). 
+It builds on the original port [dashing-js](https://github.com/fabiocaseri/dashing-js) which is no longer maintained.
 
-The goal of this Dashing-app project is to keep the minimal, up to date version of the example dashboard.
-It removes the complexity and unnecesary dependencies.
+The goal of Dashing App project is to keep the minimal, up to date version of the example dashboard.
+It removes the complexity and unnecesary npm dependencies.
 
 ### How To Use
 
-In order to use Dashing-app dashboard, first clone this github repository. 
-Next, install all npm dependencies. 
-Then run the project.
+In order to use Dashing App dashboard, first clone this github repository. Next, install all npm dependencies. Run the project.
 
     git clone https://github.com/sauliuz/dashing-app.git 
     npm install
@@ -18,7 +16,9 @@ Then run the project.
   
 ### The Look & Feel
 
-The following is the look & feel of the example dashboard you are starting with the above steps.
+The following is the look & feel of the example dashboard you get after the above steps.
+
+![Dashing App dashboard view](https://github.com/sauliuz/dashing-app/blob/master/public/example-dashboard.png "Dashing App dashboard view")
 
 ### Contributions
 
