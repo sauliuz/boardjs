@@ -1,16 +1,13 @@
-## Dashing App
+## boardjs
 
-Dashing App is a simplified NodeJS version of the [popular Dashing dashboard application](http://dashing.io/). 
-It builds on the original port [dashing-js](https://github.com/fabiocaseri/dashing-js) which is no longer maintained.
+Boardjs is a small and lean framework for building and maintaining web dashboards. Built with NodeJS.
 
-The goal of Dashing App project is to keep the minimal, up to date version of the example dashboard.
-It removes the complexity and unnecesary npm dependencies.
+Based on the [popular Dashing application](http://dashing.io/) and its NodeJS port [dashing-js](https://github.com/fabiocaseri/dashing-js).
 
 ### How To Use
 
-In order to use Dashing App dashboard, first clone this github repository. Next, install all npm dependencies. Run the project.
+To start using the app you just have to clone the git repo code, install the dependencies and start the app.
 
-    git clone https://github.com/sauliuz/dashing-app.git 
     npm install
     node app.js
   
@@ -18,7 +15,7 @@ In order to use Dashing App dashboard, first clone this github repository. Next,
 
 The following is the look & feel of the example dashboard you get after the above steps.
 
-![Dashing App dashboard view](https://github.com/sauliuz/dashing-app/blob/master/public/example-dashboard.png "Dashing App dashboard view")
+![Boardjs dashboard view](https://github.com/sauliuz/dashing-app/blob/master/public/example-dashboard.png "Boardjs dashboard view")
 
 ### Contributions
 
