@@ -1,8 +1,10 @@
+[![Build Status](https://travis-ci.org/sauliuz/boardjs.svg?branch=master)](https://travis-ci.org/sauliuz/boardjs)
+
 ## boardjs
 
 Boardjs is a small and lean framework for building and maintaining web dashboards. Built with NodeJS.
 
-Based on the [popular Dashing application](http://dashing.io/) and its NodeJS port [dashing-js](https://github.com/fabiocaseri/dashing-js).
+Inspiration from [Dashing](http://dashing.io/) and [dashing-js](https://github.com/fabiocaseri/dashing-js).
 
 ### How To Use
 
