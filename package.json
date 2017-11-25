@@ -1,8 +1,12 @@
 {
-  "name": "example-dashing-app-dashboard",
-  "description": "stand alone dashing-app project",
+  "name": "example-boardjs",
+  "description": "dashboard project",
   "author": "sauliuz",
   "version": "0.0.1",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"No test specified\" && exit 0" 
+  },
   "dependencies": {
     "coffee-script": "^1.12.5",
     "express": "3.20.2",
