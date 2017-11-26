@@ -11,13 +11,11 @@ services:
 #     echo 'placeholder'
 
 script:
-    echo $TRAVIS_BRANCH
-    npm install
-    npm test
+    npm install && npm test
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker build -t sauliuz/boardjs:v0.1.$TRAVIS_BUILD_NUMBER .
+    docker build -t sauliuz/boardjs:v0.1."$TRAVIS_BUILD_NUMBER" .
     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-    docker push sauliuz/boardjs:v0.1.$TRAVIS_BUILD_NUMBER;
+    docker push sauliuz/boardjs:v0.1."$TRAVIS_BUILD_NUMBER";
     fi
