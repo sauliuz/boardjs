@@ -13,7 +13,7 @@ To run the sckelethon app clone this git repo, install the dependencies and star
     yarn
     node app.js
 
-To add new dashboards or edit the existing ones take a look at [/dasjboards](/dasjboards) and [/jobs](/jobs) directories within the project.
+To add new dashboards or edit the existing ones take a look at [/dashboards](/dashboards) and [/jobs](/jobs) directories within the project.
   
 ### The Look & Feel
 
@@ -24,4 +24,3 @@ The following is the look & feel of the example dashboard you get after the abov
 ### Contributions
 
 Contibutions and pull requests are welcome. Created by [sauliuz](http://www.popularowl.com/author/saulius/)
-  
