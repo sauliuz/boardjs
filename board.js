@@ -1,27 +1,17 @@
-var fs = require('fs')
-  , path = require('path')
-  , express = require('express')
-  , Mincer = require('mincer')
-  , coffee = require('coffee-script')
-  , winston = require('winston');
-
+const fs = require('fs'),
+  path = require('path'),
+  express = require('express'),
+  Mincer = require('mincer'),
+  coffee = require('coffee-script'),
+  logger = require("./config/config.logger").logger;
 
 global.SCHEDULER = require('node-schedule');
-
-module.exports.logger = logger = new winston.Logger({
-  transports: [
-    new winston.transports.Console({timestamp: true}),
-  ],
-  exitOnError: false,
-  handleExceptions: true
-});
 
 module.exports.Board = function Board() {
   var boardjs = {};
   boardjs.root = path.resolve(__dirname);
   boardjs.NODE_ENV = process.env.NODE_ENV || 'development';
-
-  boardjs.view_engine = process.env.VIEW_ENGINE || 'jade';
+  boardjs.view_engine = 'ejs';
 
   boardjs.mincer = {};
   boardjs.mincer.environment = new Mincer.Environment();
@@ -31,6 +21,7 @@ module.exports.Board = function Board() {
   boardjs.mincer.environment.appendPath('assets/fonts');
   boardjs.mincer.environment.appendPath('assets/images');
   boardjs.mincer.environment.appendPath('widgets');
+  boardjs.mincer.environment.appendPath('public');
 
   boardjs.public_folder = boardjs.root + '/public';
   boardjs.views = boardjs.root + '/dashboards';
@@ -43,7 +34,7 @@ module.exports.Board = function Board() {
 
   boardjs._protected = function(req, res, next) {
     boardjs.protected(req, res, next);
-  }
+  };
 
   var expressLoggerOptions = {
     format: 'dev',
@@ -56,37 +47,33 @@ module.exports.Board = function Board() {
 
   // setup Express
   var app = express();
-  app.configure('development', function() {
-    Mincer.logger.use(logger);
-  });
-  app.configure('production', function() {
-    expressLoggerOptions.format = 'short';
-    // In production we assume that assets are not changed between requests,
-    // so we use cached version of environment.
-    // All file system methods are cached for the instances lifetime.
-    boardjs.mincer.environment = boardjs.mincer.environment.index;
-  });
-  app.configure(function() {
-    app.set('views', boardjs.views);
-    app.set('view engine', boardjs.view_engine);
-    if (boardjs.view_engine === 'ejs') {
-      app.use(require('express-ejs-layouts'));
-    }
-    app.use(express.logger(expressLoggerOptions));
-    app.use(express.errorHandler());
-    app.use(express.compress());
-    app.use(express.json());
-    app.use(express.urlencoded());
-    app.use(express.methodOverride());
-    app.use(boardjs.mincer.assets_prefix, Mincer.createServer(boardjs.mincer.environment));
-    app.use(express.static(boardjs.public_folder));
-    app.use(app.router);
-  });
+
+  app.set('views', boardjs.views);
+  app.set('view engine', boardjs.view_engine);
+  app.use(require('express-ejs-layouts'));
+
+  //app.use(Prometheus.requestCounters);  
+  //app.use(Prometheus.responseCounters);
+  
+  app.use(express.logger(expressLoggerOptions));
+  app.use(express.errorHandler());
+  app.use(express.compress());
+  app.use(express.json());
+  app.use(express.urlencoded());
+  app.use(boardjs.mincer.assets_prefix, Mincer.createServer(boardjs.mincer.environment));
+  app.use(express.static(boardjs.public_folder));
+  app.use(app.router);  
   app.set('development', boardjs.NODE_ENV === 'development');
   app.set('production', boardjs.NODE_ENV === 'production');
 
   var connections = {};
   var history = {};
+
+
+  /* http routes */
+
+  // add /metrics route
+  //Prometheus.injectMetricsRoute(app);
 
   app.get('/events', boardjs._protected, function(req, res) {
     // let request last as long as possible
@@ -212,15 +199,6 @@ module.exports.Board = function Board() {
     });
   }
 
-  // Load custom libraries
-  fs.readdir([boardjs.root, 'lib'].join(path.sep), function(err, files) {
-    if (err) throw err;
-    for (var i in files) {
-      var file = [boardjs.root, 'lib', files[i]].join(path.sep);
-      require(file);
-    }
-  });
-
   // Lod jobs files
   var job_path = process.env.JOB_PATH || [boardjs.root, 'jobs'].join(path.sep);
   fs.readdir(job_path, function(err, files) {
@@ -228,16 +206,23 @@ module.exports.Board = function Board() {
     for (var i in files) {
       var file = [job_path, files[i]].join(path.sep);
       if (file.match(/(\w*)\.job\.(js|coffee)$/)) {
-        logger.log('Loading job file:', files[i]);
+        logger.info('Loading job file:', files[i]);
         require(file);
       }
     }
   });
 
+  // bootstraping the app
   boardjs.start = function() {
+
+    //Prometheus.startCollection();
+
     app.listen(boardjs.port);
-    logger.info('Listening on http://0.0.0.0:' + boardjs.port + (process.env.__daemon === 'false' ? ', CTRL+C to stop' : ''));
-  }
+    logger.info('application is started using '+ boardjs.NODE_ENV +' environment and listening on port: ' + boardjs.port);
+  
+  };
+
   boardjs.app = app;
   return boardjs;
+
 };
