@@ -13,7 +13,7 @@ services:
 cache: yarn
 
 script:
-    yarn && npm test
+    yarn && yarn run test
 
 # after_success:
 #   - if [ "$TRAVIS_BRANCH" == "master" ]; then
