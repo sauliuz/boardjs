@@ -2,16 +2,18 @@
 
 ## boardjs
 
-Boardjs is a small and lean framework for building and maintaining web dashboards. Built with NodeJS.
+Boardjs is a small and lean framework for building and hosting web dashboards. Built with nodejs. With inspiration from [dashing](http://dashing.io/) and [dashingjs](https://github.com/fabiocaseri/dashing-js).
 
-Inspiration from [Dashing](http://dashing.io/) and [dashing-js](https://github.com/fabiocaseri/dashing-js).
+Application is using yarn for dependency management and *{domain}/metrics* endpoint for performance stats collection with [prometheus](https://prometheus.io/).
 
-### How To Use
+## How To
 
-To start using the app you just have to clone the git repo code, install the dependencies and start the app.
+To run the sckelethon app clone this git repo, install the dependencies and start the app.
 
-    npm install
+    yarn
     node app.js
+
+To add new dashboards or edit the existing ones take a look at [/dasjboards](/dasjboards) and [/jobs](/jobs) directories within the project.
   
 ### The Look & Feel
 
@@ -21,5 +23,5 @@ The following is the look & feel of the example dashboard you get after the abov
 
 ### Contributions
 
-Contibutions and pull requests are welcome. Maintained by [sauliuz](http://www.popularowl.com/author/saulius/)
+Contibutions and pull requests are welcome. Created by [sauliuz](http://www.popularowl.com/author/saulius/)
   

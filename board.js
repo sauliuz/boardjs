@@ -3,6 +3,7 @@ const fs = require('fs'),
   express = require('express'),
   Mincer = require('mincer'),
   coffee = require('coffee-script'),
+  Prometheus = require('./utils/prometheus'),
   logger = require("./config/config.logger").logger;
 
 global.SCHEDULER = require('node-schedule');
@@ -52,8 +53,8 @@ module.exports.Board = function Board() {
   app.set('view engine', boardjs.view_engine);
   app.use(require('express-ejs-layouts'));
 
-  //app.use(Prometheus.requestCounters);  
-  //app.use(Prometheus.responseCounters);
+  app.use(Prometheus.requestCounters);  
+  app.use(Prometheus.responseCounters);
   
   app.use(express.logger(expressLoggerOptions));
   app.use(express.errorHandler());
@@ -72,8 +73,8 @@ module.exports.Board = function Board() {
 
   /* http routes */
 
-  // add /metrics route
-  //Prometheus.injectMetricsRoute(app);
+  // /metrics route
+  Prometheus.injectMetricsRoute(app);
 
   app.get('/events', boardjs._protected, function(req, res) {
     // let request last as long as possible
@@ -215,7 +216,7 @@ module.exports.Board = function Board() {
   // bootstraping the app
   boardjs.start = function() {
 
-    //Prometheus.startCollection();
+    Prometheus.startCollection();
 
     app.listen(boardjs.port);
     logger.info('application is started using '+ boardjs.NODE_ENV +' environment and listening on port: ' + boardjs.port);
