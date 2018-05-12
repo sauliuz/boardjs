@@ -10,9 +10,10 @@ services:
 # before_script:
 #     echo 'placeholder'
 
+cache: yarn
+
 script:
-    npm cache verify
-    npm install && npm test
+    yarn && npm test
 
 # after_success:
 #   - if [ "$TRAVIS_BRANCH" == "master" ]; then
