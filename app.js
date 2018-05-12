@@ -1,12 +1,9 @@
-var dashing = require('./dashing.js').Dashing();
+var boardjs = require('./board.js').Board();
 
-// The main entry file for Dashing-app
-
-// Set your auth token here
-//dashing.auth_token = 'YOUR_AUTH_TOKEN';
+// The main entry file for boardjs-app
 
 /*
-dashing.protected = function(req, res, next) {
+boardjs.protected = function(req, res, next) {
   // Put any authentication code you want in here.
   // This method is run before accessing any resource.
   // if (true) next();
@@ -14,6 +11,7 @@ dashing.protected = function(req, res, next) {
 */
 
 // Set your default dashboard here
-//dashing.default_dashboard = 'mydashboard';
+//boardjs.default_dashboard = 'mydashboard';
 
-dashing.start();
+// start application
+boardjs.start();
