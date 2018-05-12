@@ -11,6 +11,7 @@ services:
 #     echo 'placeholder'
 
 script:
+    npm cache verify
     npm install && npm test
 
 # after_success:
