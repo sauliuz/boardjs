@@ -21,6 +21,8 @@ The following is the look & feel of the example dashboard you get after the abov
 
 ![Boardjs dashboard view](https://github.com/sauliuz/dashing-app/blob/master/public/example-dashboard.png "Boardjs dashboard view")
 
-### Contributions
+### Improvements?
 
-Contibutions and pull requests are welcome. Created by [sauliuz](http://www.popularowl.com/author/saulius/)
+Contibutions and pull requests are welcome.
+
+created by [@sauliuz](https://twitter.com/sauliuz) and [popularowl.com](http://www.popularowl.com "apis made simple")
