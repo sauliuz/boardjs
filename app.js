@@ -1,6 +1,10 @@
+// The main entry file for boardjs app
+
 var boardjs = require('./board.js').Board();
 
-// The main entry file for boardjs-app
+// reading config data based on the environment
+const env = process.env.NODE_ENV || 'development';
+const config = require('./config/config.'+env+'.json');
 
 /*
 boardjs.protected = function(req, res, next) {
@@ -12,6 +16,7 @@ boardjs.protected = function(req, res, next) {
 
 // Set your default dashboard here
 //boardjs.default_dashboard = 'mydashboard';
+boardjs.config = config;
 
 // start application
 boardjs.start();
