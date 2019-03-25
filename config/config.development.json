@@ -1,0 +1,16 @@
+{
+    "env":"development",
+    "port" : 3031, 
+    "db" : {
+        "dburl":"db_url",
+        "dbname":"db_name"
+    },
+    "slack": {
+        "channelName": "#channel-name",
+        "channelUrl": "slack-hook-url"
+    },
+    "siteurl":"http://localhost:3030",
+    "protocol":"http",
+    "globaluser":"globaluser",
+    "globalpassword":"globalpassword"
+}

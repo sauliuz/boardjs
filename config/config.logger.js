@@ -5,8 +5,9 @@ module.exports.logger = logger = new winston.Logger({
     transports: [
       new winston.transports.Console({
         level: 'debug',
-        timestamp: true, 
-        colorize: true
+        json: false,
+        colorize: true,
+        timestamp: true
       }),
     ],
     exitOnError: false,
