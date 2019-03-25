@@ -24,7 +24,6 @@
     "prom-client": "^11.0.0",
     "request": "^2.81.0",
     "request-promise": "^4.2.2",
-    "require": "^2.4.20",
     "response-time": "^2.3.2",
     "winston": "2.3.1"
   },
