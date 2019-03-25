@@ -1,6 +1,6 @@
 {
     "env":"development",
-    "port" : 3030, 
+    "port" : 3031, 
     "db" : {
         "dburl":"db_url",
         "dbname":"db_name"

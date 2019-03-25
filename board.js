@@ -1,9 +1,13 @@
 const fs = require('fs'),
   path = require('path'),
-  express = require('express'),
+  express = require('express'),  
+  errorHandler = require('errorhandler'),
+  bodyParser = require('body-parser'),
+  Compression = require('compression'),
+  expressLogger = require('morgan'),
   Mincer = require('mincer'),
   coffee = require('coffee-script'),
-  Prometheus = require('./utils/prometheus'),
+  Prometheus = require('./utils/prometheus');
   logger = require("./config/config.logger").logger;
 
 global.SCHEDULER = require('node-schedule');
@@ -27,7 +31,7 @@ module.exports.Board = function Board() {
   boardjs.public_folder = boardjs.root + '/public';
   boardjs.views = boardjs.root + '/dashboards';
   boardjs.default_dashboard = null;
-  boardjs.port = (process.env.PORT || 3030);
+  boardjs.config = null;
 
   boardjs.protected = function(req, res, next) {
     next();
@@ -35,15 +39,6 @@ module.exports.Board = function Board() {
 
   boardjs._protected = function(req, res, next) {
     boardjs.protected(req, res, next);
-  };
-
-  var expressLoggerOptions = {
-    format: 'dev',
-    stream: {
-      write: function(message, encoding) {
-        logger.info(message);
-      }
-    }
   };
 
   // setup Express
@@ -56,14 +51,15 @@ module.exports.Board = function Board() {
   app.use(Prometheus.requestCounters);  
   app.use(Prometheus.responseCounters);
   
-  app.use(express.logger(expressLoggerOptions));
-  app.use(express.errorHandler());
-  app.use(express.compress());
-  app.use(express.json());
-  app.use(express.urlencoded());
+  
+  
+  app.use(expressLogger('dev'));
+  app.use(errorHandler());
+  app.use(Compression());
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
   app.use(boardjs.mincer.assets_prefix, Mincer.createServer(boardjs.mincer.environment));
-  app.use(express.static(boardjs.public_folder));
-  app.use(app.router);  
+  app.use(express.static(boardjs.public_folder)); 
   app.set('development', boardjs.NODE_ENV === 'development');
   app.set('production', boardjs.NODE_ENV === 'production');
 
@@ -131,14 +127,14 @@ module.exports.Board = function Board() {
           request: req
         });
       } else {
-        res.status(404).sendfile(boardjs.public_folder + '/404.html');
+        res.status(404).sendFile(boardjs.public_folder + '/404.html');
       }
     });
   });
 
   app.get('/views/:widget?.html', boardjs._protected, function(req, res) {
     var widget = req.params.widget;
-    res.sendfile([boardjs.root, 'widgets', widget, widget + '.html'].join(path.sep));
+    res.sendFile([boardjs.root, 'widgets', widget, widget + '.html'].join(path.sep));
   });
 
   app.post('/widgets/:id', function(req, res) {
@@ -153,7 +149,7 @@ module.exports.Board = function Board() {
 
   // The 404 Route (ALWAYS Keep this as the last route)
   app.use(function(req, res, next) {
-    res.status(404).sendfile(boardjs.public_folder + '/404.html');
+    res.status(404).sendFile(boardjs.public_folder + '/404.html');
   });
 
   // Error handler
@@ -218,9 +214,13 @@ module.exports.Board = function Board() {
 
     Prometheus.startCollection();
 
-    app.listen(boardjs.port);
-    logger.info('application is started using '+ boardjs.NODE_ENV +' environment and listening on port: ' + boardjs.port);
-  
+    app.set('port', boardjs.config.port || 3000);
+    
+    app.listen(boardjs.config.port, function () {
+      logger.info('application is started using '+ boardjs.config.env +' environment and listening on port: ' + boardjs.config.port);
+      console.log('Express server listening on port ' + app.get('port'));
+    });
+
   };
 
   boardjs.app = app;
