@@ -8,7 +8,7 @@
 
 To run the skelethon app clone this git repo, install the dependencies and start the app.
 
-    npm
+    npm install
     npm start
 
 To add new dashboards or edit the existing ones take a look at [/dashboards](/dashboards) and [/jobs](/jobs) directories within the project.
