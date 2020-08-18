@@ -21,7 +21,7 @@ The following is the look & feel of the example dashboard you get after the abov
 
 ![Boardjs dashboard view](https://github.com/sauliuz/dashing-app/blob/master/public/example-dashboard.png "Boardjs dashboard view")
 
-## Improvements?
+## Improvements
 
 Contibutions and pull requests are welcome.
 
