@@ -6,9 +6,9 @@
 
 ## How To
 
-To run the skelethon app clone this git repo, install the dependencies and start the app.
+To run the skelethon app clone this git repo. Install the dependencies from `package-lock.json` and start the app.
 
-    npm install
+    npm npm ci
     npm start
 
 To add new dashboards or edit the existing ones take a look at [/dashboards](/dashboards) and [/jobs](/jobs) directories within the project.
@@ -23,6 +23,6 @@ The following is the look & feel of the example dashboard you get after the abov
 
 ## Improvements
 
-Contibutions and pull requests are welcome.
+Submit a pull request.
 
-created by [@sauliuz](https://twitter.com/sauliuz) and [popularowl.com](http://www.popularowl.com "apis made simple")
+created by [@sauliuz](https://twitter.com/sauliuz) @ [popularowl.com](http://www.popularowl.com "apis made simple")
