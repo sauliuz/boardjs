@@ -2,7 +2,7 @@ sudo: required
 
 language: node_js
 node_js:
-  - 9
+  - 12
 
 services:
   - docker
@@ -10,10 +10,10 @@ services:
 # before_script:
 #     echo 'placeholder'
 
-cache: yarn
+cache: npm
 
 script:
-    yarn && yarn run test
+    npm ci && npm test
 
 # after_success:
 #   - if [ "$TRAVIS_BRANCH" == "master" ]; then
