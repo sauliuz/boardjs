@@ -24,7 +24,7 @@
     "express-ejs-layouts": "^2.3.0",
     "mincer": "^2.0.1",
     "morgan": "^1.9.1",
-    "node-sass": "4.14.1",
+    "node-sass": "7.0.0",
     "node-schedule": "^1.2.1",
     "prom-client": "^11.0.0",
     "request": "^2.81.0",
